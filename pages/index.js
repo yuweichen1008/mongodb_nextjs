@@ -1,3 +1,4 @@
+import { session } from 'next-auth/client'
 import Navbar from '../components/Navbar'
 
 export default function Home() {
@@ -6,10 +7,13 @@ export default function Home() {
     <header>
       <title>MongoDB+NextJS</title>
     </header>
-    <Navbar />
-    <input type="text"
-      placeholder="Custom focus style"
-      className="focus:outline-none focus:ring focus:border-blue-300 ..." />
+    <Navbar transparent/>
+    {session && <>
+      <div>You are logged in</div>
+    </>}
+    {!session && <>
+      <div>Login to see</div>
+    </>}
     </>
   )
 }

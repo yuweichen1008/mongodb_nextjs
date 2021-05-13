@@ -42,5 +42,8 @@ export default NextAuth({
   // a separate secret is defined explicitly for encrypting the JWT.
 //   secret: process.env.SECRET,
   // A database is optional, but required to persist accounts in a database
-//   database: process.env.DATABASE_URL,
+  database: process.env.DATABASE_URL,
+  // session: {
+  //   jwt: true,
+  // },
 })
