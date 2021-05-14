@@ -29,17 +29,6 @@ export default NextAuth({
 //     verifyRequest: '/auth/verify-request', // (used for check email message)
 //     newUser: null // If set, new users will be directed here on first sign in
 //   },
-//   logger: {
-//     error(code, ...message) {
-//       log.error(code, message)
-//     },
-//     warn(code, ...message) {
-//       log.warn(code, message)
-//     },
-//     debug(code, ...message) {
-//       log.debug(code, message)
-//     }
-//   },
   // The secret should be set to a reasonably long random string.
   // It is used to sign cookies and to sign and encrypt JSON Web Tokens, unless
   // a separate secret is defined explicitly for encrypting the JWT.
