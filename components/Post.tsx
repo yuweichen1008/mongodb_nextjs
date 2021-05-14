@@ -1,5 +1,5 @@
 import React from "react";
-import Router from "next/router";
+import Link from "next/link";
 
 export type PostProps = {
   id: number;
@@ -15,13 +15,15 @@ export type PostProps = {
 const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const authorName = post.author ? post.author.name : "Unknown author";
   return (
-    <div onClick={() => Router.push("/p/[id]", `/p/${post.id}`)}>
-      <h2>{post.title}</h2>
-      <small>By {authorName}</small>
+      <>
+        <Link href="/p/[id]" as={`/p/${post.id}`}>
+            <a>{post.title}</a>
+        </Link> 
+        <small>By {authorName}</small>
         <div>
             {post.content}
         </div>
-    </div>
+    </>
   );
 };
 
