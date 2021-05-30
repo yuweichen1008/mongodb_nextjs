@@ -48,7 +48,7 @@ export default function Home(props) {
         {posts}
       </>}
       {!session && <>
-        <div>Login to see</div>
+        <div>Login to Post</div>
       </>}
     </Layout>
   )
@@ -58,7 +58,11 @@ export const getStaticProps: GetStaticProps = async () => {
     where: { published: true },
     include: {
       author: {
-        select: { name: true },
+        select: {
+          name: true,
+          email: true,
+          image: true
+        },
       },
     },
   })

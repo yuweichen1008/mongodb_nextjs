@@ -5,7 +5,7 @@ import { PostProps } from '../../components/Post'
 import prisma from '../../lib/prisma'
 import { useRouter } from 'next/router'
 
-async function publishPost({id, router}): Promise<void> {
+async function publishPost({id: number, router: NextRouter}): Promise<void> {
   let url = `http://localhost:3000/api/publish/${id}`;
   await fetch(url, {
       method: 'PUT'}
@@ -19,8 +19,8 @@ const Post: React.FC<PostProps> = (props) => {
     const [session, loading] = useSession()
     const postBelongsToUser = session?.user?.email === props.author?.email
     const userHasValidSession = Boolean(session)
-    let title = props.title
-    let postID = props.id
+    var title: string = props.title
+    var postID: number = props.id
     if (!props.published) {
       title = `${title} (Draft)`
     }
@@ -34,7 +34,7 @@ const Post: React.FC<PostProps> = (props) => {
               {props.content}
           </div>
           {!props.published && userHasValidSession && postBelongsToUser && (
-            <button onClick={() => publishPost({postID, router})}>Publish</button>
+            <button onClick={() => publishPost({postID: number, router: NextRouter})}>Publish</button>
           )}
         </div>
       </Layout>
@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         },
         include: {
             author: {
-                select: { name: true, email: true },
+                select: { name: true, email: true, image: true},
             },
         },
     })
